@@ -2,8 +2,6 @@
 
 Repository for the paper "SQLConductor: Search-to-Policy Learning for Step-wise Text-to-SQL Orchestration".
 
-🚧 Please note this repository is still under construction.
-
 ## Repository Layout
 
 ```text
