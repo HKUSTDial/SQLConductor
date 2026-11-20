@@ -1,0 +1,24 @@
+Analyze the current state and history to determine the best next step.
+
+# Current Context
+{CONTEXT_BLOCK}
+
+# Worker Execution History
+{HISTORY_BLOCK}
+
+# Valid Next Workers
+You MUST choose one of the following workers for the next step:
+{VALID_NEXT_WORKERS_BLOCK}
+
+## Instructions
+1.  Review the **Current Context** to see what information is available (Question, Schema, Values, Previous SQL).
+2.  Review the **Worker Execution History** to see what has already been tried and the results (including any errors).
+3.  Based on the **Valid Next Workers** list, select the worker that will make the most progress.
+    *   If you have enough information to write the SQL, choose `SQL Constructor`.
+    *   If the previous SQL failed or needs improvement, choose `SQL Refiner`.
+    *   If you are missing schema details, values, or logic, choose the corresponding helper worker.
+    *   If the task is successfully completed, choose `End`.
+
+Respond in the required format:
+<reasoning>...</reasoning><call>...</call>
+Response:

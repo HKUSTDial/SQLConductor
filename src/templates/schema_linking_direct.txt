@@ -1,0 +1,47 @@
+# Task:
+You are an expert and very smart data analyst.
+Your task is to examine the provided database schema, understand the posed question, and use the hint to **pinpoint the specific tables and columns** that are essential for crafting a SQL query to answer the question.
+
+# Instructions:
+The given schema provides a detailed definition of the database's structure, including tables, their columns, primary keys, foreign keys, and any relevant details about relationships or constraints.
+The given hint aims to direct your focus towards the specific elements of the database schema that are crucial for answering the question effectively.
+
+For each of the selected tables and columns, explain why exactly it is necessary for answering the question. Your reasoning should be concise and clear, demonstrating a logical connection between the selected items and the question asked.
+
+[IMPORTANT!]
+1. For key phrases mentioned in the question, we have provided the most similar values within the columns (TEXT-TYPE columns) denoted by "Value Examples". **This is a critical hint to identify the tables/columns that will be used in the SQL query.**
+2. If you are not sure whether a column is needed or not, it's better to include it in your selection. **It's safer to select more columns than to miss necessary ones.**
+3. If a column contains values that are related to the current question (check the "Value Examples"), you MUST include this column in your selection.
+4. If there are multiple tables to JOIN, you MUST ensure that the joined tables have EXPLICIT FOREIGN KEYS between them. For example, "TableA -> TableB, TableC -> TableB", directly join TableA and TableC is NOT ALLOWED, you must join TableA and TableB, and then join TableB and TableC.
+
+# Output Format:
+Please respond with XML code structured as follows:
+<reasoning>
+    Your reasoning for selecting the tables and columns, be concise and clear.
+</reasoning>
+<result>
+    <table table_name="table_name">
+        <column column_name="column_name" />
+        ...
+    </table>
+    <table table_name="another_table_name">
+        <column column_name="another_column_name" />
+        ...
+    </table>
+    ...
+</result>
+
+# Input:
+## Database Schema:
+{DATABASE_SCHEMA}
+
+## Question:
+{QUESTION}
+
+## Hint:
+{HINT}
+
+Only output the XML code following the output format as your response.
+
+# Output:
+

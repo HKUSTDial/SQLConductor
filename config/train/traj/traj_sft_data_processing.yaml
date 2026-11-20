@@ -1,0 +1,12 @@
+stateful_reasoning:
+  model:
+    model_name: "Qwen/Qwen2.5-Coder-32B-Instruct"
+    base_url: "http://localhost:9999/v1"
+    api_key: "sk-demo"
+    temperature: 0.8
+    top_p: 0.8
+    max_tokens: 1000
+    
+  execution:
+    n_parallel_processes: 32
+

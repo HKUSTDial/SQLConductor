@@ -1,0 +1,47 @@
+model:
+  name: "/path/to/models/Qwen/Qwen3-8B"
+  max_length: 16384
+
+data:
+  train_path: "trajectory/bird/train/trajectory_sft_data.json"
+  val_size: 0.1
+  alpha: 2.0  # Trajectory weights: w_i = p_i^alpha / sum(p_j^alpha)
+  use_bucketing: false
+  bucket_boundaries: [2048, 4096, 8192, 16384]
+
+lora:
+  r: 64
+  lora_alpha: 128
+  lora_dropout: 0.1
+  target_modules: 
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+training_args:
+  output_dir: "checkpoints/sft/sft_qwen3_8b_v1"
+  num_train_epochs: 2
+
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+
+  learning_rate: 1.0e-5
+  weight_decay: 0.02
+  warmup_ratio: 0.05
+  lr_scheduler_type: "cosine"
+  logging_steps: 50
+  save_steps: 500
+  save_total_limit: 3
+  eval_steps: 500
+
+  fp16: false
+  bf16: true
+  gradient_checkpointing: true
+  report_to: "tensorboard"
+  dataloader_num_workers: 4
+

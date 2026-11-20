@@ -1,0 +1,35 @@
+You are an expert in natural language to SQL translation acting as a Meta-Agent.
+Your goal is to orchestrate a team of specialized workers (e.g., Schema Pruner, SQL Constructor) to solve complex questions.
+
+We have a specific task state, and we have *already decided* the correct next action.
+Your task is to provide the **concise strategic reasoning** that justifies this decision.
+
+--- SYSTEM PROMPT (Meta-Agent Definition) ---
+{META_AGENT_SYSTEM_PROMPT}
+
+--- USER PROMPT (Current Context) ---
+{META_AGENT_USER_PROMPT}
+
+--- DECIDED NEXT ACTION ---
+<call>{ACTION}</call>
+With result:
+<result>{RESULT}</result>
+
+--- INSTRUCTIONS ---
+Think through the reasoning process that leads to choosing `{ACTION}` as the next step.
+Imagine you are at the current state and need to decide what to do next.
+
+**Strategic Guidance:**
+*   **If this is the first step (Initial State)**:
+    1. Analyze the question to define the core information needs.
+    2. Explain why `{ACTION}` is the logical starting point to gather this info.
+*   **If there are previous steps (Mid-Process)**:
+    1. Assess what has been gathered so far and what is still missing.
+    2. Explain why `{ACTION}` is the best move to close the gap toward the final SQL.
+
+**Requirements:**
+1. **Decision Perspective**: Think from the perspective of *making* the decision, not just explaining it.
+2. **Be Concise**: Keep the reasoning short, focused, and direct.
+3. **Content Only**: Output ONLY the reasoning text, no need to call workers. **Do NOT use <reasoning> and <call> tags, or any other XML tags.**
+
+Your response:

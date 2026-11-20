@@ -1,0 +1,73 @@
+# BIRD inference with the trained Qwen3-8B policy and Qwen2.5-Coder-32B workers
+
+system:
+  log_level: "INFO"
+  async_workers: true
+  result_cache: true
+  cache_ttl: 3600
+  schema_max_length: 28000
+  unrestricted: true
+
+  data:
+    real_tasks_file: "data/preprocessed/bird_task/dev/tasks.pkl"
+    database_root_dir: "data/bird/dev/dev_databases"
+    dataset: "bird"
+    split: "dev"
+    data_file_path: "data/bird/dev/dev.json"
+    output_dir: "results/inference/exp_train/bird_dev_meta_qwen3_8b_rl_work_2.5_32b"
+
+models:
+  default:
+    base_url: "http://localhost:9999/v1"
+    api_key: "sk-demo"
+    model_name: "Qwen/Qwen2.5-Coder-32B-Instruct"
+    temperature: 0.8
+    top_p: 0.8
+    max_tokens: 4096
+    timeout: 60
+
+  meta_agent:
+    base_url: "http://localhost:18001/v1"
+    api_key: "sk-demo"
+    model_name: "SQLConductor-Policy"
+    temperature: 0.8
+    top_p: 0.8
+    max_tokens: 4096
+    timeout: 60
+
+meta_agent:
+  model_port: 18001
+  temperature: 0.8
+  max_tokens: 4096
+  max_turns: 10
+
+workers:
+  Schema Pruner:
+    temperature: 0.8
+    max_retries: 3
+    retry_delay: 1.0
+
+  Value Extractor:
+    temperature: 0.8
+    max_retries: 3
+    retry_delay: 1.0
+
+  Operation Identifier:
+    temperature: 0.8
+    max_retries: 3
+    retry_delay: 1.0
+
+  SQL Constructor:
+    temperature: 0.8
+    max_retries: 3
+    retry_delay: 1.0
+
+  SQL Refiner:
+    temperature: 0.8
+    max_retries: 3
+    retry_delay: 1.0
+
+  Question Decomposer:
+    temperature: 0.8
+    max_retries: 3
+    retry_delay: 1.0

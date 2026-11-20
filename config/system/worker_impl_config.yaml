@@ -1,0 +1,7 @@
+"Question Decomposer": "default"
+"Schema Pruner": "robust"
+"Value Extractor": "default"
+"Operation Identifier": "default"
+"SQL Constructor": "icl"
+"SQL Refiner": "robust"
+"End": "default"

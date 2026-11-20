@@ -1,0 +1,63 @@
+# OS files
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Local environments
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.venv/
+/venv/
+/env/
+
+# Editors
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+.specstory/**
+.cursorindexingignore
+
+# Python caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Coverage and packaging
+.coverage
+.coverage.*
+htmlcov/
+/build/
+/dist/
+*.egg-info/
+
+# Data and artifacts
+*.log
+*.zip
+/data/*
+!/data/dataset_processing/
+!/data/bird/
+/data/bird/*
+!/data/bird/README.md
+/results/
+/outputs/
+/logs/
+/checkpoints/
+/models/
+/preprocess_space/
+/runs/
+/wandb/
+
+# Local tests
+/tests/

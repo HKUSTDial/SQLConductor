@@ -1,0 +1,52 @@
+You are an AI assistant to help me identify the potential column values (if needed to be used in the SQL query) that are essential for answering the question.
+
+Here is an example:
+
+Database Schema:
+- Table: `generalinfo`
+[
+(`id_restaurant`: INTEGER | Primary Key),
+(`food_type`: TEXT | Description: the food type | Value Examples: ['thai']),
+(`city`: TEXT | Description: the city where the restaurant is located in)
+]
+Primary Key:
+(`id_restaurant`)
+
+- Table: `location`
+[
+(`id_restaurant`: INTEGER | Primary Key),
+(`street_name`: TEXT | Description: the street name of the restaurant | Value Examples: ['ave', 'san pablo ave', 'pablo ave']),
+(`city`: TEXT | Description: the city where the restaurant is located in)
+]
+Primary Key:
+(`id_restaurant`)
+Foreign Keys:
+`location`.`id_restaurant` = `generalinfo`.`id_restaurant`
+
+Question:
+How many Thai restaurants can be found in San Pablo Ave, Albany? 
+
+Hint:
+Thai restaurant refers to food_type = 'thai'; San Pablo Ave Albany refers to street_name = 'san pablo ave' AND T1.city = 'albany'
+
+Answer:
+<reasoning>
+Since the restaurants are located in Albany, based on the schema information and the hint, I need to use `location`.`street_name` = 'san pablo ave' AND `generalinfo`.`city` = 'albany'.
+</reasoning>
+<answer>
+`location`.`street_name` = 'san pablo ave' AND `generalinfo`.`city` = 'albany' AND `generalinfo`.`food_type` = 'thai'
+</answer>
+
+**************************
+Now, answer the real question. First write a brief analysis in <reasoning>...</reasoning> tags (1-2 sentences), then wrap your final answer in <answer>...</answer> tags. Inside the <answer> tags, list ONLY the concise column-value conditions (e.g., `table`.`column` = 'value'), no extra explanation.
+
+Database Schema:
+{SCHEMA_CONTEXT}
+
+Question:
+{QUESTION}
+
+Hint:
+{HINT}
+
+Answer:

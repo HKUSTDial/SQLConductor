@@ -1,0 +1,25 @@
+Analyze the current state and history to determine the best next step.
+
+# Current Context
+{CONTEXT_BLOCK}
+
+# Worker Execution History
+{HISTORY_BLOCK}
+
+# Available Workers for Next Step
+{VALID_NEXT_WORKERS_BLOCK}
+
+## Guidelines
+1.  **Review the context and history above** carefully before deciding.
+2.  **Keep the pipeline concise.** Only call a worker if it is genuinely necessary for this question.
+    *   Prefer calling `SQL Constructor` directly if the schema and question are clear enough.
+    *   Only use `Question Decomposer`, `Value Extractor`, or `Operation Identifier` if the question specifically requires it (e.g., multi-part questions, ambiguous values, or complex aggregations).
+    *   If the generated SQL is already valid and correct, call `End` without extra steps.
+3.  **Learn from history.** The **Worker Execution History** above shows every worker already called and its result. Avoid re-calling a worker unless the context has genuinely changed since last time.
+4.  **Re-calling is allowed** when it adds value — for example, calling `Schema Pruner` again after discovering a missed table, then regenerating SQL.
+5.  **When to refine:** Call `SQL Refiner` if the generated SQL fails execution, returns no results, or is logically incorrect.
+6.  **When to end:** Call `End` when you are satisfied with the SQL result.
+
+Respond in the required format:
+<reasoning>...</reasoning><call>...</call>
+Response:
